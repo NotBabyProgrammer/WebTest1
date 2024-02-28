@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using WebTest1.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<WebTest1Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebTest1Context") ?? throw new InvalidOperationException("Connection string 'WebTest1Context' not found.")));
 
 // Add services to the container.
 
